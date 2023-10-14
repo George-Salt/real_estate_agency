@@ -5,7 +5,7 @@ from property.models import Flat, Owner
 
 
 def copy_owners_from_flat_model(apps, schema_editor):
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.iterator():
         owner, created = Owner.objects.get_or_create(name=flat.owner, pure_phone=flat.owner_pure_phone)
         owner.flats.add(flat)
 
