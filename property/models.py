@@ -6,7 +6,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class Flat(models.Model):
     owner = models.CharField('ФИО владельца', max_length=200)
-    owner_pure_phone = PhoneNumberField(
+    pure_phone = PhoneNumberField(
         blank=True,
         verbose_name='Нормализированный номер телефона'
     )
@@ -40,12 +40,12 @@ class Flat(models.Model):
         'Адрес квартиры',
         help_text='ул. Подольских курсантов д.5 кв.4'
     )
+
     floor = models.CharField(
         'Этаж',
         max_length=3,
         help_text='Первый этаж, последний этаж, пятый этаж'
     )
-
     rooms_number = models.IntegerField(
         'Количество комнат в квартире',
         db_index=True
@@ -67,7 +67,7 @@ class Flat(models.Model):
     )
     liked_by = models.ManyToManyField(
         User,
-        verbose_name='Кто лайкнул',
+        verbose_name='Кому понравилось',
         blank=True,
         related_name='liked_flats'
     )
